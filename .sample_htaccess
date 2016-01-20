@@ -1,0 +1,63 @@
+ # ALLOW USER BY IP
+<Limit GET POST>
+ order deny,allow
+ deny from all
+ allow from 216.158.235.250
+ allow from 87.81.166.107
+ allow from 88.208.237.252
+ allow from 213.171.204.244
+ allow from 216.158.235.234
+ allow from 162.250.124.167
+ allow from 82.6.23.214
+ allow from 86.14.22.132
+ allow from 141.105.220.169
+ allow from 81.145.200.200
+ allow from 121.54.44.89
+ allow from 37.130.229.149
+ allow from 121.54.44.90
+ allow from 45.59.157.114
+ allow from 192.186.142.165
+ allow from 115.147.97.156
+ allow from 122.53.31.205
+ allow from 122.53.31.203
+ allow from 203.167.167.50
+ allow from 87.7.135.176
+ allow from 121.44.44.94
+ allow from 64.233.173.238
+ allow from 203.177.217.50
+ allow from 45.59.157.112
+ allow from 146.185.28.62
+ allow from 104.219.250.52
+ allow from 203.177.167.50
+ allow from 112.208.148.77
+ allow from 109.149.135.25
+ allow from 88.208.237.252
+ allow from 79.99.79.205
+ allow from 81.96.202.82
+ allow from 81.96.200.251
+ allow from 78.141.25.38
+ allow from 87.81.166.107
+ allow from 141.105.220.169
+ allow from 80.45.207.49
+ allow from 94.197.121.162
+ allow from 121.54.44.94
+ allow from 109.149.135.25
+ allow from 122.53.31.201
+ allow from 188.29.165.41
+ allow from 92.40.248.173
+ allow from 185.34.80.137
+ allow from 82.10.126.65
+ allow from 216.158.235.250
+ allow from 123.0.0.1
+ allow from 123.1.1.1
+ allow from 152.1.1.2
+ allow from 152.2.2.1
+ allow from 157.2.2.1
+ allow from 157.2.2.3
+</Limit>
+
+# PREVENT VIEWING OF .HTACCESS
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
