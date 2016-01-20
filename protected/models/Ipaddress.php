@@ -125,5 +125,10 @@ class Ipaddress extends CActiveRecord
         $result = $this->rebuildHtAccessFile();
         parent::afterSave();
     }
+    protected function afterDelete()
+    {
+        $result = $this->rebuildHtAccessFile();
+        parent::afterDelete();
+    }
 
 }
