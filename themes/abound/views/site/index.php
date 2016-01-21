@@ -25,11 +25,22 @@ $baseUrl = Yii::app()->theme->baseUrl;
         )); 
     ?>
         <?php echo CHtml::beginForm(array('/home'), 'POST', array('class'=>"well")); ?>
-            <label>Add new IP Address</label>
-            <?php echo CHtml::error($formModel, 'ip_address',array('style'=>"color:red")); ?>
-            <?php echo CHtml::activeTextField($formModel, 'ip_address'); ?>
+            <legend>Register New IP Address</legend>
+            <div class="span12" style="margin-left: 15px;">
+                <?php echo CHtml::activeLabel($formModel, 'ip_address'); ?>
+                <?php echo CHtml::error($formModel, 'ip_address',array('style'=>"color:red")); ?>
+                <?php echo CHtml::activeTextField($formModel, 'ip_address'); ?>
+            </div>
+            <div class="span12">
+                <?php echo CHtml::activeLabel($formModel, 'notes'); ?>
+                <?php echo CHtml::error($formModel, 'notes',array('style'=>"color:red")); ?>
+                <?php echo CHtml::activeTextField($formModel, 'notes'); ?>
+            </div>
+            <div class="span12">
+                <?php echo CHtml::button('Submit', array('type'=>'submit','class'=>"btn btn-primary",'name'=>'createNewIP')); ?>   
+            </div>
+            <div class="clearfix"></div>
             <br>
-            <?php echo CHtml::button('Submit', array('type'=>'submit','class'=>"btn btn-primary",'name'=>'createNewIP')); ?>
         <?php echo CHtml::endForm(); ?>
 
 	  <?php
@@ -45,6 +56,7 @@ $baseUrl = Yii::app()->theme->baseUrl;
             'filter'=>$model,
             'columns'=>array(
                 'ip_address',
+                'notes',
                 /*@TODO - change delete url link*/
                 array(
                     'class'=>'application.libs.gridview.DashboardMainButton',

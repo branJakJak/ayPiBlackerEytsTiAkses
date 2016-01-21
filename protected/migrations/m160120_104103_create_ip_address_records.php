@@ -8,6 +8,7 @@ class m160120_104103_create_ip_address_records extends CDbMigration
 				'id'=>'pk',
 				'ip_address'=>'string not null',
 				'status'=>'string default "whitelisted"',
+				'notes'=>'text',
 				'date_created'=>'datetime',
 				'date_updated'=>'datetime',
 			));

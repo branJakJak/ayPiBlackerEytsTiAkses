@@ -64,7 +64,6 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		Yii::trace('this is a dev trace','dev_trace');
 		$model=new Ipaddress('search');
 		$formModel = new Ipaddress();
 		$model->unsetAttributes();

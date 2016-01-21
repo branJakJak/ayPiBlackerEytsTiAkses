@@ -7,12 +7,14 @@
  * @property integer $id
  * @property string $ip_address
  * @property string $status
+ * @property string $notes
  * @property string $date_created
  * @property string $date_updated
  */
 class Ipaddress extends CActiveRecord
 {
     public $status = "whitelisted";
+    public $notes;
 
     /**
      * @return string the associated database table name
@@ -30,7 +32,7 @@ class Ipaddress extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('ip_address', 'required'),
+            array('ip_address,notes', 'required'),
             array('ip_address', 'unique', 'message' => '{attribute} "{value}" exists in the database.'),
             array('ip_address', 'application.extensions.ipvalidator.IPValidator', 'version' => 'v4'),
             array('ip_address, status', 'length', 'max' => 255),
@@ -60,6 +62,7 @@ class Ipaddress extends CActiveRecord
             'id' => 'ID',
             'ip_address' => 'Ip Address',
             'status' => 'Status',
+            'notes' => 'Notes',
             'date_created' => 'Date Created',
             'date_updated' => 'Date Updated',
         );
@@ -86,6 +89,7 @@ class Ipaddress extends CActiveRecord
         $criteria->compare('id', $this->id);
         $criteria->compare('ip_address', $this->ip_address, true);
         $criteria->compare('status', $this->status, true);
+        $criteria->compare('notes', $this->notes, true);
         $criteria->compare('date_created', $this->date_created, true);
         $criteria->compare('date_updated', $this->date_updated, true);
 
