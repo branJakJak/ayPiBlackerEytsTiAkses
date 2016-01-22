@@ -116,23 +116,23 @@ class Ipaddress extends CActiveRecord
                 'class' => 'zii.behaviors.CTimestampBehavior',
                 'createAttribute' => 'date_created',
                 'updateAttribute' => 'date_updated',
+            ),
+            'RebuildHtAccessBehavior' => array(
+                'class' => "application.behaviors.RebuildHtAccessBehavior",
+                'htaccessFile' => Yii::app()->params['htaccess_location'],
             )
-            // 'RebuildHtAccessBehavior' => array(
-            //     'class' => "application.behaviors.RebuildHtAccessBehavior",
-            //     'htaccessFile' => Yii::app()->params['htaccess_location'],
-            // )
         );
     }
 
-    // protected function afterSave()
-    // {
-    //     $result = $this->rebuildHtAccessFile();
-    //     parent::afterSave();
-    // }
-    // protected function afterDelete()
-    // {
-    //     $result = $this->rebuildHtAccessFile();
-    //     parent::afterDelete();
-    // }
+    protected function afterSave()
+    {
+        $result = $this->rebuildHtAccessFile();
+        parent::afterSave();
+    }
+    protected function afterDelete()
+    {
+        $result = $this->rebuildHtAccessFile();
+        parent::afterDelete();
+    }
 
 }
