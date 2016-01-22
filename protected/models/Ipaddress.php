@@ -13,8 +13,8 @@
  */
 class Ipaddress extends CActiveRecord
 {
-    public $status = "whitelisted";
-    public $notes;
+    const IP_ADDRESS_STATUS_WHITELIST =  'allow';
+    const IP_ADDRESS_STATUS_BLACKLIST =  'block';
 
     /**
      * @return string the associated database table name
@@ -39,7 +39,7 @@ class Ipaddress extends CActiveRecord
             array('date_created, date_updated', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, ip_address, status, date_created, date_updated', 'safe', 'on' => 'search'),
+            array('id, ip_address, status, notes, date_created, date_updated', 'safe', 'on' => 'search'),
         );
     }
 
@@ -116,23 +116,23 @@ class Ipaddress extends CActiveRecord
                 'class' => 'zii.behaviors.CTimestampBehavior',
                 'createAttribute' => 'date_created',
                 'updateAttribute' => 'date_updated',
-            ),
-            'RebuildHtAccessBehavior' => array(
-                'class' => "application.behaviors.RebuildHtAccessBehavior",
-                'htaccessFile' => Yii::app()->params['htaccess_location'],
             )
+            // 'RebuildHtAccessBehavior' => array(
+            //     'class' => "application.behaviors.RebuildHtAccessBehavior",
+            //     'htaccessFile' => Yii::app()->params['htaccess_location'],
+            // )
         );
     }
 
-    protected function afterSave()
-    {
-        $result = $this->rebuildHtAccessFile();
-        parent::afterSave();
-    }
-    protected function afterDelete()
-    {
-        $result = $this->rebuildHtAccessFile();
-        parent::afterDelete();
-    }
+    // protected function afterSave()
+    // {
+    //     $result = $this->rebuildHtAccessFile();
+    //     parent::afterSave();
+    // }
+    // protected function afterDelete()
+    // {
+    //     $result = $this->rebuildHtAccessFile();
+    //     parent::afterDelete();
+    // }
 
 }

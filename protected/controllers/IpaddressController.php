@@ -28,7 +28,7 @@ class IpaddressController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('admin','delete','index','view','create','update'),
+				'actions'=>array('admin','delete','index','view','create','update','block','allow'),
 				'roles'=>array('administrator'),
 			),
 			array('deny',  // deny all users
@@ -161,4 +161,34 @@ class IpaddressController extends Controller
 			Yii::app()->end();
 		}
 	}
+	public function actionBlock($ip)
+	{
+		$model=  Ipaddress::model()->findByAttributes(array('ip_address' => $ip));
+        if ($model) {
+            $model->status = Ipaddress::IP_ADDRESS_STATUS_BLACKLIST;
+            if ($model->update()) {
+                Yii::app()->user->setFlash("success", "IP Address $ip is now blocked");
+            }else{
+                Yii::app()->user->setFlash("error", CHtml::errorSummary($model));
+            }
+            $this->redirect($this->createAbsoluteUrl("site/index"));
+        } else{
+            throw new CHttpException(404, "Sorry ip address $ip doesn't exists");
+        }
+	}
+	public function actionAllow($ip)
+	{
+        $model=  Ipaddress::model()->findByAttributes(array('ip_address' => $ip));
+        if ($model) {
+            $model->status = Ipaddress::IP_ADDRESS_STATUS_WHITELIST;
+            if ($model->update()) {
+                Yii::app()->user->setFlash("success", "IP Address $ip is now allowed");
+            }else{
+                Yii::app()->user->setFlash("error", CHtml::errorSummary($model));
+            }
+            $this->redirect($this->createAbsoluteUrl("site/index"));
+        } else{
+            throw new CHttpException(404, "Sorry ip address $ip doesn't exists");
+        }
+	}	
 }
