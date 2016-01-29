@@ -76,6 +76,8 @@ class SiteController extends Controller
 				$formModel->unsetAttributes();
 				Yii::app()->user->setFlash("success","<strong>Success : </strong> {$model->ip_address} new IP address added. ");
 			}
+		}else{
+			$formModel->ip_address = Yii::app()->request->getUserHostAddress();
 		}
 		$datasource = $model->search();
 		$this->render('index',compact('datasource','model','formModel'));
