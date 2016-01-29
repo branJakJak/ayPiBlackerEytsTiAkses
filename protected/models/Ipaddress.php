@@ -82,17 +82,14 @@ class Ipaddress extends CActiveRecord
      */
     public function search()
     {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
         $criteria = new CDbCriteria;
-
         $criteria->compare('id', $this->id);
         $criteria->compare('ip_address', $this->ip_address, true);
         $criteria->compare('status', $this->status, true);
         $criteria->compare('notes', $this->notes, true);
         $criteria->compare('date_created', $this->date_created, true);
         $criteria->compare('date_updated', $this->date_updated, true);
-
+        $criteria->order = "date_created DESC";
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));

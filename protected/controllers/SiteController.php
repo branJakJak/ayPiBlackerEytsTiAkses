@@ -80,6 +80,7 @@ class SiteController extends Controller
 			$formModel->ip_address = Yii::app()->request->getUserHostAddress();
 		}
 		$datasource = $model->search();
+		
 		$this->render('index',compact('datasource','model','formModel'));
 	}
 	public function actionDeleteIp($ip_address)
