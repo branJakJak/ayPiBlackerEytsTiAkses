@@ -59,7 +59,7 @@ $baseUrl = Yii::app()->theme->baseUrl;
                 'notes',
                 array(
                     'name'=>'date_created',
-                    'value'=>'date("M j, Y", $data->date_created)',
+                    'value'=>'date("M j, Y", strtotime($data->date_created))',
                 ),
                 array(
                     'class'=>'application.libs.gridview.InvertStatusButtonColumnLink',
