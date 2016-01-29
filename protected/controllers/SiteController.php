@@ -67,6 +67,13 @@ class SiteController extends Controller
 		$model=new Ipaddress('search');
 		$formModel = new Ipaddress();
 		$model->unsetAttributes();
+
+		if ( isset( $_GET[ 'pageSize' ] ) )
+		{
+			Yii::app()->user->setState( 'pageSize', (int) $_GET[ 'pageSize' ] );
+			unset( $_GET[ 'pageSize' ] );
+		}
+				
 		if(isset($_GET['Ipaddress'])){
 			$model->attributes=$_GET['Ipaddress'];
 		}

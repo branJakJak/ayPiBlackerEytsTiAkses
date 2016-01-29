@@ -4,6 +4,14 @@
 $this->pageTitle=Yii::app()->name;
 $baseUrl = Yii::app()->theme->baseUrl; 
 ?>
+<?php Yii::app()->clientScript->registerCss( 'initPageSizeCSS', '
+    .page-size-wrap{
+        text-align: left;
+        margin-bottom: -55px;
+        margin-top: 30px;        
+    }
+' ); ?>
+
 <style type="text/css">
     
     input.error{
@@ -49,9 +57,24 @@ $baseUrl = Yii::app()->theme->baseUrl;
 			'titleCssClass'=>''
 		));
 		?>
-
+        <?php
+            $pageSize = Yii::app()->user->getState( 'pageSize', Yii::app()->params[ 'defaultPageSize' ] );
+            $pageSizeDropDown = CHtml::dropDownList(
+                'pageSize',
+                $pageSize,
+                array( 10 => 10, 25 => 25, 50 => 50, 100 => 100 ),
+                array(
+                    'class'    => 'change-pagesize',
+                    'onchange' => "$.fn.yiiGridView.update('ipListId',{data:{pageSize:$(this).val()}});",
+                )
+            );
+        ?>
+        <div class="page-size-wrap">
+            <span>Display by: </span><?= $pageSizeDropDown; ?>
+        </div>
         <?php 
           $this->widget('zii.widgets.grid.CGridView', array(
+            'id'=>'ipListId',
             'dataProvider'=>$datasource,
             'filter'=>$model,
             'columns'=>array(
