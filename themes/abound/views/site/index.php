@@ -58,11 +58,13 @@ $baseUrl = Yii::app()->theme->baseUrl;
                 'ip_address',
                 'notes',
                 array(
+                    'name'=>'date_created',
+                    'value'=>'date("M j, Y", $data->date_created)',
+                ),
+                array(
                     'class'=>'application.libs.gridview.InvertStatusButtonColumnLink',
                     'header'=>"Update",
                 ),
-                
-                /*@TODO - change delete url link*/
                 array(
                     'class'=>'application.libs.gridview.DashboardMainButton',
                 ),
