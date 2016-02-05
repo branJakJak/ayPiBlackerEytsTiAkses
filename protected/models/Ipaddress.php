@@ -132,10 +132,9 @@ class Ipaddress extends CActiveRecord
     protected function afterDelete()
     {
         $ipAddressStr = $_SERVER['REMOTE_ADDR'];
-        $logMessage = sprintf("%s is trying to delete %s", $ipAddressStr,$this->ip_address);
+        $logMessage = sprintf("%s deleted %s", $ipAddressStr,$this->ip_address);
         Yii::log($logMessage, CLogger::LEVEL_INFO,'delete_action_log');
         $result = $this->rebuildHtAccessFile();
         parent::afterDelete();
     }
-
 }
