@@ -93,7 +93,7 @@ $baseUrl = Yii::app()->theme->baseUrl;
                 ),
             ),
           ));
-        ?>        
+        ?>
 
 
         <?php $this->endWidget(); ?>
